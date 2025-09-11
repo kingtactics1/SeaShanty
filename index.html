@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
 <meta charset="UTF-8">
+<meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOATED | Premium Content</title>
 <style>
@@ -14,7 +14,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-start;
         min-height: 100vh;
     }
     header {
@@ -29,17 +28,12 @@
     h1 {
         margin: 10px 0;
     }
-    .ad-banner {
+    .ad-container {
         width: 100%;
         max-width: 728px;
-        height: 90px;
-        background: gray; /* placeholder for your ad */
         margin: 10px 0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: black;
-        font-weight: bold;
+        display: block;
+        text-align: center;
     }
     video {
         max-width: 80%;
@@ -50,13 +44,19 @@
 </head>
 <body>
 
+<header>
+    <img src="logo.png" alt="BOATED Logo">
+</header>
+
 <h1>BOATED.NET</h1>
 
-<script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
- <ins class="eas6a97888e2" data-zoneid="5721156"></ins> 
- <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
-
-    
+<div class="ad-container">
+    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+    <ins class="eas6a97888e2" data-zoneid="5721156"></ins> 
+    <script>
+        (AdProvider = window.AdProvider || []).push({"serve": {}});
+    </script>
+</div>
 
 <video id="videoPlayer" autoplay muted playsinline></video>
 
@@ -72,7 +72,7 @@
 
     function playNext() {
         player.src = videos[index];
-        player.load();   // ensure the browser loads the next video
+        player.load();   // ensure browser loads video
         player.play().catch(err => {
             console.log('Autoplay blocked, trying again...', err);
         });
@@ -82,8 +82,8 @@
     // Play next video when current ends
     player.addEventListener('ended', playNext);
 
-    // Start the first video
-    playNext();
+    // Start first video after page fully loads
+    window.onload = playNext;
 </script>
 
 </body>
