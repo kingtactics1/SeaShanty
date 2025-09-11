@@ -61,7 +61,7 @@
 <video id="videoPlayer" autoplay muted playsinline></video>
 
 <script>
-    // List all 74 MP4 filenames
+    // All 74 MP4s in "teen" folder
     const videos = [];
     for (let i = 1; i <= 74; i++) {
         videos.push(`teen/video${i}.mp4`);
@@ -71,12 +71,18 @@
     let index = 0;
 
     function playNext() {
-        player.src = `mp4/${videos[index]}`;
-        player.play();
+        player.src = videos[index];
+        player.load();   // ensure the browser loads the next video
+        player.play().catch(err => {
+            console.log('Autoplay blocked, trying again...', err);
+        });
         index = (index + 1) % videos.length;
     }
 
+    // Play next video when current ends
     player.addEventListener('ended', playNext);
+
+    // Start the first video
     playNext();
 </script>
 
