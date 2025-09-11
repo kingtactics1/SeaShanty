@@ -1,74 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BOATED | Premium Content</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        body {
-            background: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 20px;
-        }
-        h1 {
-            color: white;
-            font-size: 3em;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        .gif-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 15px;
-            width: 100%;
-            max-width: 1200px;
-        }
-        .gif-grid img {
-            width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BOATED | Premium Content</title>
+<style>
+    body {
+        background: black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: white;
+    }
+    video {
+        max-width: 80%;
+        border-radius: 10px;
+    }
+</style>
 </head>
 <body>
-    <h1>BOATED.NET</h1>
+<h1>BOATED.NET</h1>
 
-    <!-- Ad Code -->
-    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
-    <ins class="eas6a97888e2" data-zoneid="5721156" data-keywords="keywords" data-sub="123450000"></ins> 
-    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+<video id="videoPlayer" autoplay muted playsinline></video>
 
-    <!-- GIF Grid -->
-    <div class="gif-grid" id="gifGrid"></div>
+<script>
+    // List all 74 MP4 filenames
+    const videos = [];
+    for (let i = 1; i <= 74; i++) {
+        videos.push(`video${i}.mp4`);
+    }
 
-    <script>
-        // List all GIF filenames in your "gif/" folder
-        const gifs = [
-            "boat1.gif",
-            "boat2.gif",
-            "boat3.gif",
-            "boat4.gif"
-            // Add all your GIF filenames here
-        ];
+    const player = document.getElementById('videoPlayer');
+    let index = 0;
 
-        const grid = document.getElementById('gifGrid');
+    function playNext() {
+        player.src = `mp4/${videos[index]}`;
+        player.play();
+        index = (index + 1) % videos.length; // loop back to start
+    }
 
-        gifs.forEach(filename => {
-            const img = document.createElement('img');
-            img.src = `gif/${filename}`;
-            img.alt = filename;
-            img.loading = "lazy"; // Lazy load for performance
-            grid.appendChild(img);
-        });
-    </script>
+    player.addEventListener('ended', playNext);
+    playNext(); // start first video
+</script>
 </body>
 </html>
