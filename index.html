@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOATED | Premium Content</title>
 <style>
@@ -14,7 +13,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        min-height: 100vh;
     }
     header {
         width: 100%;
@@ -35,10 +33,16 @@
         display: block;
         text-align: center;
     }
+    .video-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
     video {
-        max-width: 80%;
+        max-width: 200px;
         border-radius: 10px;
-        margin: 20px 0;
     }
 </style>
 </head>
@@ -58,32 +62,21 @@
     </script>
 </div>
 
-<video id="videoPlayer" autoplay muted playsinline></video>
+<div class="video-grid" id="videoGrid"></div>
 
 <script>
-    // All 74 MP4s in "teen" folder
-    const videos = [];
+    const videoGrid = document.getElementById('videoGrid');
+
+    // Generate all 74 video elements
     for (let i = 1; i <= 74; i++) {
-        videos.push(`teen/video${i}.mp4`);
+        const video = document.createElement('video');
+        video.src = `teen/video${i}.mp4`;
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true; // each video loops individually
+        video.playsInline = true;
+        videoGrid.appendChild(video);
     }
-
-    const player = document.getElementById('videoPlayer');
-    let index = 0;
-
-    function playNext() {
-        player.src = videos[index];
-        player.load();   // ensure browser loads video
-        player.play().catch(err => {
-            console.log('Autoplay blocked, trying again...', err);
-        });
-        index = (index + 1) % videos.length;
-    }
-
-    // Play next video when current ends
-    player.addEventListener('ended', playNext);
-
-    // Start first video after page fully loads
-    window.onload = playNext;
 </script>
 
 </body>
