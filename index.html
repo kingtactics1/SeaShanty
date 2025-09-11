@@ -21,7 +21,7 @@
         background: #111;
     }
     header img {
-        max-width: 200px;
+        max-width: 250px;
     }
     h1 {
         margin: 10px 0;
@@ -34,14 +34,18 @@
         text-align: center;
     }
     .video-grid {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 15px;
+        justify-items: center;
+        width: 100%;
+        max-width: 1280px;
         margin-bottom: 20px;
+        padding: 0 10px;
     }
     video {
-        max-width: 200px;
+        width: 100%;
+        height: auto;
         border-radius: 10px;
     }
 </style>
@@ -73,7 +77,7 @@
         video.src = `teen/video${i}.mp4`;
         video.autoplay = true;
         video.muted = true;
-        video.loop = true; // each video loops individually
+        video.loop = true;
         video.playsInline = true;
         videoGrid.appendChild(video);
     }
