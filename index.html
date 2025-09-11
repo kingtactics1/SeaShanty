@@ -1,49 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta http-equiv="Delegate-CH" content="Sec-CH-UA https://s.magsrv.com; Sec-CH-UA-Mobile https://s.magsrv.com; Sec-CH-UA-Arch https://s.magsrv.com; Sec-CH-UA-Model https://s.magsrv.com; Sec-CH-UA-Platform https://s.magsrv.com; Sec-CH-UA-Platform-Version https://s.magsrv.com; Sec-CH-UA-Bitness https://s.magsrv.com; Sec-CH-UA-Full-Version-List https://s.magsrv.com; Sec-CH-UA-Full-Version https://s.magsrv.com;">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BOATED | Premium Content</title>
 <style>
     body {
         background: black;
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: flex-start;
+        min-height: 100vh;
+    }
+    header {
+        width: 100%;
+        text-align: center;
+        padding: 10px;
+        background: #111;
+    }
+    header img {
+        max-width: 200px;
+    }
+    h1 {
+        margin: 10px 0;
+    }
+    .ad-banner {
+        width: 100%;
+        max-width: 728px;
+        height: 90px;
+        background: gray; /* placeholder for your ad */
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
         justify-content: center;
-        height: 100vh;
-        color: white;
+        color: black;
+        font-weight: bold;
     }
     video {
         max-width: 80%;
         border-radius: 10px;
+        margin: 20px 0;
     }
 </style>
 </head>
 <body>
+
+<header>
+    <img src="logo.png" alt="BOATED Logo">
+</header>
+
 <h1>BOATED.NET</h1>
+
+<script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+ <ins class="eas6a97888e2" data-zoneid="5721156"></ins> 
+ <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+
+    
 
 <video id="videoPlayer" autoplay muted playsinline></video>
 
 <script>
     // List all 74 MP4 filenames
-    const videos = [
-        "video1.mp4","video2.mp4","video3.mp4","video4.mp4","video5.mp4",
-        "video6.mp4","video7.mp4","video8.mp4","video9.mp4","video10.mp4",
-        "video11.mp4","video12.mp4","video13.mp4","video14.mp4","video15.mp4",
-        "video16.mp4","video17.mp4","video18.mp4","video19.mp4","video20.mp4",
-        "video21.mp4","video22.mp4","video23.mp4","video24.mp4","video25.mp4",
-        "video26.mp4","video27.mp4","video28.mp4","video29.mp4","video30.mp4",
-        "video31.mp4","video32.mp4","video33.mp4","video34.mp4","video35.mp4",
-        "video36.mp4","video37.mp4","video38.mp4","video39.mp4","video40.mp4",
-        "video41.mp4","video42.mp4","video43.mp4","video44.mp4","video45.mp4",
-        "video46.mp4","video47.mp4","video48.mp4","video49.mp4","video50.mp4",
-        "video51.mp4","video52.mp4","video53.mp4","video54.mp4","video55.mp4",
-        "video56.mp4","video57.mp4","video58.mp4","video59.mp4","video60.mp4",
-        "video61.mp4","video62.mp4","video63.mp4","video64.mp4","video65.mp4",
-        "video66.mp4","video67.mp4","video68.mp4","video69.mp4","video70.mp4",
-        "video71.mp4","video72.mp4","video73.mp4","video74.mp4"
-    ];
+    const videos = [];
+    for (let i = 1; i <= 74; i++) {
+        videos.push(`video${i}.mp4`);
+    }
 
     const player = document.getElementById('videoPlayer');
     let index = 0;
@@ -51,11 +77,12 @@
     function playNext() {
         player.src = `mp4/${videos[index]}`;
         player.play();
-        index = (index + 1) % videos.length; // loop back to start
+        index = (index + 1) % videos.length;
     }
 
     player.addEventListener('ended', playNext);
-    playNext(); // start first video
+    playNext();
 </script>
+
 </body>
 </html>
