@@ -13,44 +13,62 @@
         }
         body {
             background: black;
-            height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
+            padding: 20px;
         }
         h1 {
             color: white;
             font-size: 3em;
             text-align: center;
-            margin-top: 20px;
+            margin-bottom: 30px;
         }
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 50px;
+        .gif-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            width: 100%;
+            max-width: 1200px;
         }
-        .container img {
-            max-width: 150px;
+        .gif-grid img {
+            width: 100%;
             height: auto;
-        }
-        .container .gif {
-            max-width: 300px;
-            height: auto;
+            border-radius: 5px;
         }
     </style>
 </head>
 <body>
     <h1>BOATED.NET</h1>
-     <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
- <ins class="eas6a97888e2" data-zoneid="5721156" data-keywords="keywords" data-sub="123450000"></ins> 
- <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
 
-    
-    <div class="container">
-        <img class="gif" src="boat.gif" alt="Centered GIF">
-    </div>
+    <!-- Ad Code -->
+    <script async type="application/javascript" src="https://a.magsrv.com/ad-provider.js"></script> 
+    <ins class="eas6a97888e2" data-zoneid="5721156" data-keywords="keywords" data-sub="123450000"></ins> 
+    <script>(AdProvider = window.AdProvider || []).push({"serve": {}});</script>
+
+    <!-- GIF Grid -->
+    <div class="gif-grid" id="gifGrid"></div>
+
+    <script>
+        // List all GIF filenames in your "gif/" folder
+        const gifs = [
+            "boat1.gif",
+            "boat2.gif",
+            "boat3.gif",
+            "boat4.gif"
+            // Add all your GIF filenames here
+        ];
+
+        const grid = document.getElementById('gifGrid');
+
+        gifs.forEach(filename => {
+            const img = document.createElement('img');
+            img.src = `gif/${filename}`;
+            img.alt = filename;
+            img.loading = "lazy"; // Lazy load for performance
+            grid.appendChild(img);
+        });
+    </script>
 </body>
 </html>
