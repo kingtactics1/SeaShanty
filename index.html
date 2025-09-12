@@ -22,12 +22,23 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; background-color: var(--bg); color: var(--fg); overflow: hidden; }
+    body { 
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji"; 
+      background-color: var(--bg); 
+      color: var(--fg); 
+      overflow: hidden; 
+    }
 
     .bg-video { position: fixed; inset: 0; z-index: 0; overflow: hidden; }
     .bg-video video {
-      position: absolute; top: 50%; left: 50%;
-      width: 100%; height: 100%; object-fit: cover;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100vw;
+      height: 100vh;
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: cover;
       transform: translate(-50%, -50%);
       visibility: hidden;
     }
@@ -67,6 +78,7 @@
     @media (max-width: 640px) {
       nav { gap: .5rem; padding: .6rem .8rem; }
       nav a { font-size: .92rem; padding: .45rem .8rem; }
+      .bg-video video { width: 100vw; height: 100vh; object-fit: cover; }
     }
 
     .sound-gate { position: fixed; inset: 0; display: none; place-items: center; background: rgba(0,0,0,.35); z-index: 15; }
@@ -80,64 +92,4 @@
 <body>
   <div class="bg-video" id="bg">
     <video id="heroVideo" autoplay muted loop playsinline webkit-playsinline preload="auto" poster="">
-      <source src="background.mp4" type="video/mp4">
-      <source src="background.webm" type="video/webm">
-      Your browser does not support the video tag.
-    </video>
-  </div>
-
-  <div class="sound-gate" id="soundGate" aria-hidden="true">
-    <button id="enableSound">Enable sound</button>
-  </div>
-
-  <nav>
-    <a href="home.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="contact.html">Contact</a>
-  </nav>
-
-  <div class="content">
-    <h1>BOATED .NET</h1>
-  </div>
-
-  <script>
-    (function() {
-      const video = document.getElementById('heroVideo');
-      const gate = document.getElementById('soundGate');
-      const btn = document.getElementById('enableSound');
-      const bg = document.getElementById('bg');
-
-      video.addEventListener('canplay', () => { bg.classList.add('ready'); });
-
-      const tryPlay = () => video.play().catch(() => {});
-      tryPlay();
-
-      const enableSound = () => {
-        video.muted = false;
-        try { video.currentTime = Math.max(0, video.currentTime + 0.001); } catch (e) {}
-        video.play().catch(() => {});
-        gate.classList.remove('active');
-        window.removeEventListener('click', enableSound);
-        window.removeEventListener('touchstart', enableSound);
-        window.removeEventListener('keydown', enableSound);
-      };
-
-      setTimeout(() => {
-        if (video.paused || video.muted) {
-          gate.classList.add('active');
-        }
-      }, 800);
-
-      btn.addEventListener('click', enableSound);
-      window.addEventListener('click', enableSound, { once: true });
-      window.addEventListener('touchstart', enableSound, { once: true });
-      window.addEventListener('keydown', enableSound, { once: true });
-
-      window.__videoDebug = {
-        state: () => ({ paused: video.paused, muted: video.muted, readyState: video.readyState, networkState: video.networkState, currentTime: video.currentTime })
-      };
-    })();
-  </script>
-</body>
-</html>
+      <source src="background.mp4" type="video/mp4
